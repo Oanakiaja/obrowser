@@ -1,3 +1,4 @@
+mod css;
 mod dom;
 mod html;
 fn main() {
@@ -18,5 +19,14 @@ fn main() {
     </div>"#
         .to_string();
     let document_tree = html::parse(source);
-    println!("{:?}", document_tree);
+    println!("{:#?}", document_tree);
+
+    let css_source = r#"
+        h1, h2, h3 { margin: auto; color: #cc0000; }
+        div.note { margin-bottom: 20px; padding: 10px; }
+        #answer { display: none; }
+    "#
+    .to_string();
+    let style_sheet = css::parse(css_source);
+    println!("{:#?}", style_sheet);
 }
