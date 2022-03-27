@@ -9,10 +9,12 @@ There are still amounts of features that need to be implemented.
 
 # Result 
 
+https://oanakiaja.github.io/layout-engine-toy/
+
 ![result](./result.png)
 
 ## added feature
-- export as wasm lib and be used in a real browser with canvas2d api.
+- export as wasm lib and be used in a real browser with canvas2d api. 
 
 ## TODO
 
