@@ -3,5 +3,6 @@ import wasmPack from 'vite-plugin-wasm-pack';
 
 export default defineConfig({
   // pass your local crate path to the plugin
-  plugins: [wasmPack('./layout-engine', 'layout-engine')]
+  plugins: [wasmPack('./layout-engine', 'layout-engine')],
+  base: 'layout-engine-toy'
 });
