@@ -4,7 +4,7 @@ a toy project based on "https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine
 
 I plan to learn Rust & Browser Engine from this base project. So I create this repo. 
 
-There are still amounts of features needing to be realized.
+There are still amounts of features that need to be implemented.
 
 
 # Result 
