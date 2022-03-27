@@ -1,0 +1,26 @@
+{
+  "name": "layout-engine",
+  "version": "1.0.0",
+  "description": "a toy project based on \"https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html\".",
+  "main": "index.js",
+  "scripts": {
+    "wasm": "wasm-pack build ./layout-engine --target web",
+    "dev": "yarn wasm && vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oanakiaja/mini-layout-engine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oanakiaja/mini-layout-engine/issues"
+  },
+  "homepage": "https://github.com/Oanakiaja/mini-layout-engine#readme",
+  "devDependencies": {
+    "vite": "^2.8.6",
+    "vite-plugin-wasm-pack": "^0.1.9"
+  }
+}
