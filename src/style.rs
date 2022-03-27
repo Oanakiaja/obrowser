@@ -48,7 +48,7 @@ fn matches_simple_selector(element: &ElementData, selector: &SimpleSelector) -> 
     if selector
         .class
         .iter()
-        .any(|class| element.classes().contains(&**class))
+        .any(|class| !element.classes().contains(&**class))
     {
         return false;
     }
@@ -83,7 +83,7 @@ fn specified_values<'a>(elem: &ElementData, style_sheet: &'a StyleSheet) -> Prop
         }
     }
 
-    return values;
+    values
 }
 
 pub fn style_tree<'a>(root: &'a Node, style_sheet: &'a StyleSheet) -> StyledNode<'a> {
