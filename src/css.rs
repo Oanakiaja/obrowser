@@ -47,8 +47,10 @@ pub struct Declaration {
 pub enum Value {
     Keyword(String),
     Length(f32, Unit),
-    ColorValue(String),
+    ColorValue(Color),
 }
+
+pub type Color = String;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Unit {
