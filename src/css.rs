@@ -29,11 +29,9 @@ pub struct SimpleSelector {
 impl Selector {
     pub fn specificity(&self) -> Specificity {
         let Selector::Simple(ref simple) = *self;
-        println!("{:#?}", simple);
         let a = simple.id.iter().count();
         let b = simple.class.len();
         let c = simple.tag_name.iter().count();
-        println!("{:#?}", (a, b, c));
         (a, b, c)
     }
 }
@@ -45,15 +43,15 @@ pub struct Declaration {
     pub value: Value,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Value {
     Keyword(String),
     Length(f32, Unit),
     ColorValue(String),
 }
 
-#[derive(Debug, Clone)]
-enum Unit {
+#[derive(Debug, Clone, PartialEq)]
+pub enum Unit {
     Px,
 }
 
@@ -247,5 +245,14 @@ pub fn parse(source: String) -> StyleSheet {
     };
     StyleSheet {
         rules: parser.parse_rules(),
+    }
+}
+
+impl Value {
+    pub fn to_px(&self) -> f32 {
+        match *self {
+            Value::Length(f, Unit::Px) => f,
+            _ => 0.0,
+        }
     }
 }

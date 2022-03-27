@@ -13,6 +13,12 @@ pub type PropertyMap = HashMap<String, Value>;
 
 pub type MatchedRule<'a> = (Specificity, &'a Rule);
 
+pub enum Display {
+    Inline,
+    Block,
+    None,
+}
+
 #[derive(Debug)]
 pub struct StyledNode<'a> {
     pub node: &'a Node,
@@ -92,5 +98,27 @@ pub fn style_tree<'a>(root: &'a Node, style_sheet: &'a StyleSheet) -> StyledNode
             .iter()
             .map(|child| style_tree(child, style_sheet))
             .collect(),
+    }
+}
+
+impl StyledNode<'_> {
+    pub fn value(&self, name: &str) -> Option<Value> {
+        self.specified_values.get(name).map(|v| v.clone())
+    }
+
+    pub fn display(&self) -> Display {
+        match self.value("display") {
+            Some(Value::Keyword(s)) => match &*s {
+                "block" => Display::Block,
+                "none" => Display::None,
+                _ => Display::Inline,
+            },
+            _ => Display::Inline,
+        }
+    }
+
+    pub fn lookup(&self, name: &str, fallback_name: &str, default: &Value) -> Value {
+        self.value(name)
+            .unwrap_or_else(|| self.value(fallback_name).unwrap_or_else(|| default.clone()))
     }
 }
