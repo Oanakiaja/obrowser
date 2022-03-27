@@ -1,4 +1,5 @@
-use std::fmt::DebugList;
+// TODO:
+// 1. specificity is simple, but deps on selector parser. All needs to be realized.
 
 pub type Specificity = (usize, usize, usize);
 
@@ -9,29 +10,30 @@ pub struct StyleSheet {
 
 #[derive(Debug)]
 pub struct Rule {
-    selectors: Vec<Selector>,
-    declarations: Vec<Declaration>,
+    pub selectors: Vec<Selector>,
+    pub declarations: Vec<Declaration>,
 }
 
 //TODO: https://www.w3.org/TR/selectors-3/
 #[derive(Debug)]
-enum Selector {
+pub enum Selector {
     Simple(SimpleSelector),
 }
 #[derive(Debug)]
-struct SimpleSelector {
-    tag_name: Option<String>,
-    id: Option<String>,
-    class: Vec<String>,
+pub struct SimpleSelector {
+    pub tag_name: Option<String>,
+    pub id: Option<String>,
+    pub class: Vec<String>,
 }
 
 impl Selector {
     pub fn specificity(&self) -> Specificity {
-        // FIXME: 这里是什么意思呢，看不懂呢
         let Selector::Simple(ref simple) = *self;
+        println!("{:#?}", simple);
         let a = simple.id.iter().count();
         let b = simple.class.len();
         let c = simple.tag_name.iter().count();
+        println!("{:#?}", (a, b, c));
         (a, b, c)
     }
 }
@@ -39,18 +41,18 @@ impl Selector {
 // margin: 10px;
 #[derive(Debug)]
 pub struct Declaration {
-    name: String,
-    value: Value,
+    pub name: String,
+    pub value: Value,
 }
 
-#[derive(Debug)]
-enum Value {
+#[derive(Debug, Clone)]
+pub enum Value {
     Keyword(String),
     Length(f32, Unit),
     ColorValue(String),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 enum Unit {
     Px,
 }
