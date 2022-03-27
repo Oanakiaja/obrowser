@@ -11,6 +11,9 @@ There are still amounts of features that need to be implemented.
 
 ![result](./result.png)
 
+## added feature
+- export as wasm lib and be used in a real browser with canvas2d api.
+
 ## TODO
 
 - more DomNode Types
@@ -21,6 +24,5 @@ There are still amounts of features that need to be implemented.
 - more css properties
 - not by-hand html&css parser 
 - error catch
-- export as wasm lib and be used in a real browser with canvas2d api.
 
 
