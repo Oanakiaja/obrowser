@@ -11,14 +11,14 @@ use image;
 fn main() {
     let mut viewport: layout::Dimensions = Default::default();
     viewport.content.width = 800.0;
-    viewport.content.height = 600.0;
+    viewport.content.height = 200.0;
 
     let initial_containing_block = layout::Dimensions {
         content: layout::Rect {
             x: 0.0,
             y: 0.0,
             width: 800.0,
-            height: 600.0,
+            height: 200.0,
         },
         padding: Default::default(),
         border: Default::default(),
