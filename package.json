@@ -4,11 +4,10 @@
   "description": "a toy project based on \"https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html\".",
   "main": "index.js",
   "scripts": {
-    "install-wasm": "curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh  ",
     "wasm": "wasm-pack build ./layout-engine --target web",
     "dev": "yarn wasm && vite",
     "build": "yarn wasm && vite build",
-    "vercel-build": "yarn install-wasm && yarn wasm && vite build"
+    "publish-dist": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
     "type": "git",
