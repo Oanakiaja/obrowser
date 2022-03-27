@@ -5,9 +5,9 @@ use std::iter::repeat;
 
 #[derive(Debug)]
 pub struct Canvas {
-    pixels: Vec<Color>,
-    width: usize,
-    height: usize,
+    pub pixels: Vec<Color>,
+    pub width: usize,
+    pub height: usize,
 }
 
 impl Canvas {
@@ -30,7 +30,6 @@ impl Canvas {
 
                 for y in y0..=y1 {
                     for x in x0..=x1 {
-                        // TODO: alpha compositing with existing pixel
                         self.pixels[x + y * self.width] = color.clone();
                     }
                 }

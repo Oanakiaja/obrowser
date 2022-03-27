@@ -5,6 +5,9 @@ mod dom;
 mod html;
 mod layout;
 mod style;
+
+use image;
+
 fn main() {
     let mut viewport: layout::Dimensions = Default::default();
     viewport.content.width = 800.0;
@@ -67,5 +70,26 @@ fn main() {
     // println!("{:#?}", display_list);
 
     let canvas = canvas::paint(&display_list, initial_containing_block.content);
-    // println!("{:#?}", canvas);
+
+    let mut imgbuf = image::ImageBuffer::new(canvas.width as u32, canvas.height as u32);
+    for (x, y, pixel) in imgbuf.enumerate_pixels_mut() {
+        *pixel = image::Rgb(parse_color(
+            &canvas.pixels[(x as usize + canvas.width * y as usize)],
+        ));
+    }
+    imgbuf.save("result.png").unwrap();
+}
+
+// #ffffff -> (255,255,255)
+fn parse_color(color: &String) -> [u8; 3] {
+    let mut pos = 1;
+    let item = &color[pos..pos + 2];
+    let r = u8::from_str_radix(item, 16).unwrap();
+    pos += 2;
+    let item = &color[pos..pos + 2];
+    let g = u8::from_str_radix(item, 16).unwrap();
+    pos += 2;
+    let item = &color[pos..pos + 2];
+    let b = u8::from_str_radix(item, 16).unwrap();
+    [r, g, b]
 }

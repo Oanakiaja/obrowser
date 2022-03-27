@@ -37,7 +37,7 @@ impl Selector {
 }
 
 // margin: 10px;
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Declaration {
     pub name: String,
     pub value: Value,
