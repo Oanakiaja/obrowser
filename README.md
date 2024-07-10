@@ -16,15 +16,4 @@ https://oanakiaja.github.io/layout-engine-toy/
 ## added feature
 - export as wasm lib and be used in a real browser with canvas2d api. 
 
-## TODO
-
-- more DomNode Types
-- more complex selectors
-- dom inline style
-- Inheritance
-- cascade & user-agent style
-- more css properties
-- not by-hand html&css parser 
-- error catch
-
 
